@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <h1>All Tables</h1>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for list in listObjects.all %}
+            <li>{{list}}</li>
+            <ul>
+                {% for item in list.item_set.all %}
+                    {% if item.complete %}
+                        <li style="text-decoration: line-through;">{{item}}</li>
+                    {% else %}
+                        <li>{{item}}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+{% endblock %}
