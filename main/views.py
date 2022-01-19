@@ -12,3 +12,6 @@ def allLists(request):
 def listById(request, id):
     todolist = ToDoList.objects.get(id=id)
     return render(request, "listById.html", {"todolist": todolist})
+
+def createTable(request):
+    return render(request, "create.html", {})
