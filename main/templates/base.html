@@ -7,8 +7,18 @@
         <title>{% block title %}Base Page{% endblock %}</title>
     </head>
     <body>
-        {% block content %}
-            <h1>This is the base page!</h1>
+        {% block authenticationCheck %}
+            {% if user.is_authenticated %}
+                {% block content %}
+                    <h1>This is the base page!</h1>
+                {% endblock %}
+                <p>Logged in as {{user.username}}</p>
+            {% else %}
+                <h1>Can't view this page without logging in. <a href="/login/">Login Here!</a></h1>
+            {% endif %}
+        {% endblock %}
+
+        {% block registerOrLogin %}
         {% endblock %}
     </body>
 </html>

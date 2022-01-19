@@ -4,7 +4,10 @@
     Registration
 {% endblock %}
 
-{% block content %}
+{% block authenticationCheck %}
+{% endblock %}
+
+{% block registerOrLogin %}
     <h1>User Registration</h1>
     <form action="/register/" method="post">
         {% csrf_token %}
