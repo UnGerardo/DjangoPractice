@@ -1,4 +1,7 @@
-from django import forms
+from django.forms import ModelForm
+from .models import ToDoList
 
-class CreateTableForm(forms.Form):
-    name = forms.CharField(label="Table Name:", max_length=200)
+class CreateTableForm(ModelForm):
+    class Meta:
+        model = ToDoList
+        fields = ["name"]

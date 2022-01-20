@@ -15,7 +15,7 @@ def register(request):
                 password = form.cleaned_data["password1"]
             )
             user.save()
-            # return HttpResponseRedirect("/register/")
+            return HttpResponseRedirect("/login/")
     else:
         form = RegisterForm()
     return render(request, "register.html", {"form": form})

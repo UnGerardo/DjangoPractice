@@ -1,5 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import ToDoList
+from .forms import CreateTableForm
 
 # Create your views here.
 def index(request):
@@ -14,4 +16,12 @@ def listById(request, id):
     return render(request, "listById.html", {"todolist": todolist})
 
 def createTable(request):
-    return render(request, "create.html", {})
+    if request.method == "POST":
+        form = CreateTableForm(request.POST)
+        if form.is_valid():
+            newTable = ToDoList(name=form.cleaned_data["name"], user=request.user)
+            newTable.save()
+            return HttpResponseRedirect(f"/list/{newTable.id}")
+    else:
+        form = CreateTableForm()
+    return render(request, "create.html", {"form": form})
